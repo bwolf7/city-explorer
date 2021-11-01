@@ -1,24 +1,23 @@
 # Project Name
+City Explorer
 
-**Author**: Your Name Goes Here
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Author**: Brandon Wolf
+**Version**: 0.0.1 
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+Our cilent just moved to the Seattle area. After travleing across the country, they realized how much they love to travel. The problem is, they had a tough time juggling a bunch of sites to keep track of weather, food and entertainment. They need us to create an App that takes in all this information for each area they want to travel too. 
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+We will need a REST API call to a site LocationIQ. We will also need a few functions to be able to take in a user input and display a map, list of restraunts and some entertainment. 
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+REACT, Bootstrap, JavaScript, CSS, HTML 
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Sam Panek - Helped map out data flow from local machine to LocationIQ database
 
 Name of feature: 
 Estimate of time needed to complete: 
