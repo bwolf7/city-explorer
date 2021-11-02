@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from "./Main"
 import Header from "./Header";
@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       cityValue: '',
       error: false,
+      errorMessage: "",
       location: '',
 
     }
@@ -21,17 +22,23 @@ class App extends Component {
     this.setState({ cityValue: e.target.value })
   }
 
+  hideError = () => {
+    this.setState({ error: false })
+  }
+
   handleClick = async (e) => {
     e.preventDefault()
     const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.cityValue}&format=json`;
     console.log(url);
-    //try {
-    let response = await axios.get(url);
-    console.log(response.data[0])
-    this.setState({ location: response.data[0] })
-    //} catch (e) {
-    this.setState({ error: true })
-    //}
+    try {
+      let response = await axios.get(url);
+      console.log(response.data[0])
+      this.setState({ location: response.data[0] })
+    } catch (e) {
+      this.setState({ error: true })
+      this.setState({ errorMessage: Error })
+      console.log(this.state.errorMessage)
+    }
 
   }
 
@@ -39,7 +46,7 @@ class App extends Component {
     return (
       <>
         <Header></Header>
-        <Main handleClick={this.handleClick} handleChange={this.handleChange} cityValue={this.state.cityValue} location={this.location} error={this.state.error} ></Main>
+        <Main handleClick={this.handleClick} handleChange={this.handleChange} cityValue={this.state.cityValue} location={this.location} error={this.state.error} hideError={this.hideError} ></Main>
 
         <Card style={{ width: '18rem' }}>
           <Card.Body>
@@ -49,6 +56,7 @@ class App extends Component {
             </Card.Text>
           </Card.Body>
         </Card>
+        <img src="`https://{s}-tiles.locationiq.com/v3/earth/r/{z}/{x}/{y}.vector?key=process.env.REACT_APP_LOCATION_KEY" alt="map" />
         <Footer></Footer>
       </>
     )
@@ -57,4 +65,4 @@ class App extends Component {
 
 export default App
 
-//img src="querey is URL"//
+//img src="querey is URL"
