@@ -57,4 +57,4 @@ class App extends Component {
 
 export default App
 
-//img src="querey is URL"
+//img src="querey is URL"//
