@@ -7,9 +7,9 @@ class Main extends Component {
     render() {
         return (
             <>
-                <FormLocation handleClick={this.props.handleClick} handleChange={this.props.handleChange} cityValue={this.props.cityValue} error={this.props.error} display_name={this.props.location}></FormLocation>
+                <FormLocation handleClick={this.props.handleClick} handleChange={this.props.handleChange} cityValue={this.props.cityValue}></FormLocation>
                 <Citycard display_name={this.props.location}></Citycard>
-                <DisplayModal></DisplayModal>
+                <DisplayModal error={this.props.error} hideError={this.props.hideError}></DisplayModal>
             </>
         )
     }
