@@ -33,11 +33,16 @@ class App extends Component {
     try {
       let response = await axios.get(url);
       console.log(response.data[0])
-      this.setState({ location: response.data[0] })
+      this.setState({ location: response.data[0] }, this.getMapUrl)
     } catch (e) {
       this.setState({ error: true })
-      this.setState({ errorMessage: Error })
+      //this.setState({ errorMessage: error.response })
+      console.log(e.response)
       console.log(this.state.errorMessage)
+    }
+
+    getMapUrl = () => {
+      let mapUrl = `https://maps.locationiq.com/v/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`
     }
 
   }
@@ -50,13 +55,14 @@ class App extends Component {
 
         <Card style={{ width: '18rem' }}>
           <Card.Body>
+            <Card.Img src={this.mapUrl} />
             <Card.Title><h1>{this.state.location.display_name}</h1></Card.Title>
             <Card.Text>
               <p>Latitude:{this.state.location.lat} Longitude:{this.state.location.lon}</p>
             </Card.Text>
           </Card.Body>
         </Card>
-        <img src="`https://{s}-tiles.locationiq.com/v3/earth/r/{z}/{x}/{y}.vector?key=process.env.REACT_APP_LOCATION_KEY" alt="map" />
+
         <Footer></Footer>
       </>
     )
