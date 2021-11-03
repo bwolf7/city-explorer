@@ -13,8 +13,7 @@ class App extends Component {
       cityValue: '',
       error: false,
       errorMessage: "",
-      location: '',
-
+      location: ''
     }
   }
   handleChange = (e) => {
@@ -36,14 +35,12 @@ class App extends Component {
       this.setState({ location: response.data[0] })
     } catch (e) {
       this.setState({ error: true })
-      //this.setState({ errorMessage: error.response })
+      let modifiedResponse = e.response.status;
+      this.setState({ errorMessage: modifiedResponse });
       console.log(e.response)
       console.log(this.state.errorMessage)
     }
 
-    // getMapUrl = () => {
-    //   let mapUrl = `https://maps.locationiq.com/v/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`
-    // }
 
   }
 
@@ -51,11 +48,11 @@ class App extends Component {
     return (
       <>
         <Header></Header>
-        <Main handleClick={this.handleClick} handleChange={this.handleChange} cityValue={this.state.cityValue} location={this.location} error={this.state.error} hideError={this.hideError} ></Main>
+        <Main handleClick={this.handleClick} handleChange={this.handleChange} cityValue={this.state.cityValue} location={this.location} error={this.state.error} hideError={this.hideError} errorMessage={this.state.errorMessage} ></Main>
 
         <Card style={{ width: '18rem' }}>
           <Card.Body>
-            <Card.Img src={this.mapUrl} />
+            <Card.Img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`} />
             <Card.Title><h1>{this.state.location.display_name}</h1></Card.Title>
             <Card.Text>
               <p>Latitude:{this.state.location.lat} Longitude:{this.state.location.lon}</p>
@@ -71,4 +68,3 @@ class App extends Component {
 
 export default App
 
-//img src="querey is URL"
