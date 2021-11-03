@@ -16,7 +16,7 @@ class DisplayModal extends Component {
                             <Modal.Title>AN ERROR HAS OCCURED</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <p>Error: Request failed with status code 404</p>
+                            <p>{this.props.errorMessage}</p>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.thisClick} variant="secondary">Close</Button>

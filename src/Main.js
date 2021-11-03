@@ -9,7 +9,7 @@ class Main extends Component {
             <>
                 <FormLocation handleClick={this.props.handleClick} handleChange={this.props.handleChange} cityValue={this.props.cityValue}></FormLocation>
                 {/* <Citycard display_name={this.props.location}></Citycard> */}
-                <DisplayModal error={this.props.error} hideError={this.props.hideError}></DisplayModal>
+                <DisplayModal error={this.props.error} hideError={this.props.hideError} errorMessage={this.props.errorMessage}></DisplayModal>
             </>
         )
     }
