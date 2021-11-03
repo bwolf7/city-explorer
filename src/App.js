@@ -33,7 +33,7 @@ class App extends Component {
     try {
       let response = await axios.get(url);
       console.log(response.data[0])
-      this.setState({ location: response.data[0] }, this.getMapUrl)
+      this.setState({ location: response.data[0] })
     } catch (e) {
       this.setState({ error: true })
       //this.setState({ errorMessage: error.response })
@@ -41,9 +41,9 @@ class App extends Component {
       console.log(this.state.errorMessage)
     }
 
-    getMapUrl = () => {
-      let mapUrl = `https://maps.locationiq.com/v/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`
-    }
+    // getMapUrl = () => {
+    //   let mapUrl = `https://maps.locationiq.com/v/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`
+    // }
 
   }
 
