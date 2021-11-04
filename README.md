@@ -19,6 +19,8 @@ REACT, Bootstrap, JavaScript, CSS, HTML
 ## Credit and Collaborations
 Sam Panek - Helped map out data flow from local machine to LocationIQ database
 
+
 ![dataflow lab 6](/dataflow.JPG)
 ![dataflow lab 7](/dataflow7.png)
+
 
