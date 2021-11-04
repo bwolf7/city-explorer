@@ -13,7 +13,8 @@ class App extends Component {
       cityValue: '',
       error: false,
       errorMessage: "",
-      location: ''
+      location: '',
+      forecast: []
     }
   }
   handleChange = (e) => {
@@ -28,10 +29,9 @@ class App extends Component {
   handleClick = async (e) => {
     e.preventDefault()
     const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.cityValue}&format=json`;
-    console.log(url);
+    console.log(this.state.cityValue);
     try {
       let response = await axios.get(url);
-      console.log(response.data[0])
       this.setState({ location: response.data[0] })
     } catch (e) {
       this.setState({ error: true })
@@ -40,9 +40,26 @@ class App extends Component {
       console.log(e.response)
       console.log(this.state.errorMessage)
     }
-
-
   }
+
+  requestForecast = async () => {
+    let cityName = (this.state.cityValue);
+    try {
+      let url = `http://localhost:3001/weather?city_name=${cityName}&lat=${this.state.location.lat}&lon=${this.state.location.lon}`;
+      let response = await axios.get(url);
+      let forecastData = response.data
+      this.setState({ forecast: forecastData })
+    }
+    catch (e) {
+      if (e) {
+        let modifiedResponse = e.response.status;
+        this.setState({ error: true });
+        this.setState({ errorStatus: modifiedResponse });
+      }
+    }
+  }
+
+
 
   render() {
     return (
@@ -59,12 +76,14 @@ class App extends Component {
             </Card.Text>
           </Card.Body>
         </Card>
-
+        <button onClick={this.requestForecast}>Get Forecast</button>
+        <div>{this.state.forecast.map(element => { return (<p>{element.date} , {element.description}</p>) })}</div>
         <Footer></Footer>
       </>
     )
   }
 }
+
 
 export default App
 
